@@ -100,6 +100,12 @@ public class MazeGridPanel extends JPanel {
 		case 3:
 			new DijkstraSolve(grid, this);
 			break;
+		case 4:
+			new LStarSolve(grid, this, grid.get(0), grid.get(grid.size() - 1), 0.99, 1, grid.size());
+			break;
+		case 5:
+			new AStarSolve(grid, this);
+			break;
 		default:
 			new DijkstraSolve(grid, this);
 			break;

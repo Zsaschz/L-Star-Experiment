@@ -26,6 +26,7 @@ public class BFSSolve {
 		timer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (current == null) return;
 				if (!current.equals(grid.get(grid.size() - 1))) {
 					flood();
 				} else {
@@ -44,6 +45,7 @@ public class BFSSolve {
 	private void flood() {
 		current.setDeadEnd(true);
 		current = queue.poll();
+		if (current == null) return;
 		List<Cell> adjacentCells = current.getValidMoveNeighbours(grid);
 		for (Cell c : adjacentCells) {
 			if (c.getDistance() == -1) {

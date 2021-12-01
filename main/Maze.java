@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 public class Maze {
 
-	public static final int WIDTH = 800;
+	public static final int WIDTH = 200;
 	public static final int HEIGHT = WIDTH; // best to keep these the same. variable is only created for readability.
 	public static final int W = 20;
 	
@@ -34,7 +34,7 @@ public class Maze {
 			"2. DFS", "3. Eller's", "4. Growing Forest", "5. Growing Tree", "6. Houston's", 
 			"7. Hunt & Kill", "8. Kruskal's", "9. Prim's", "10. Quad-directional DFS", "11. Sidewinder", 
 			"12. Spiral Backtracker", "13. Wilson's", "14. Zig-Zag"};
-	private static final String[] SOLVING_METHODS = {"0. Bi-directional DFS", "1. BFS", "2. DFS", "3. Dijkstra's"};
+	private static final String[] SOLVING_METHODS = {"0. Bi-directional DFS", "1. BFS", "2. DFS", "3. Dijkstra's", "4. L Star", "5. A Star"};
 
 	private int cols, rows;
 
@@ -69,8 +69,47 @@ public class Maze {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		MazeGridPanel grid = new MazeGridPanel(rows, cols);
+		grid.generate(9);
 		grid.setBackground(Color.BLACK);
-		
+
+//		long startTime = System.nanoTime();
+//		grid.solve(4);
+//		long stopTime = System.nanoTime();
+//		long elapsedTime = stopTime - startTime;
+//		System.out.println("L Star = " + elapsedTime);
+//
+//		grid.resetSolution();
+//
+//		startTime = System.nanoTime();
+//		grid.solve(0);
+//		stopTime = System.nanoTime();
+//		elapsedTime = stopTime - startTime;
+//		System.out.println("Bi-directional DFS = " + elapsedTime);
+//
+//		grid.resetSolution();
+//
+//		startTime = System.nanoTime();
+//		grid.solve(1);
+//		stopTime = System.nanoTime();
+//		elapsedTime = stopTime - startTime;
+//		System.out.println("BFS = " + elapsedTime);
+//
+//		grid.resetSolution();
+//
+//		startTime = System.nanoTime();
+//		grid.solve(2);
+//		stopTime = System.nanoTime();
+//		elapsedTime = stopTime - startTime;
+//		System.out.println("DFS = " + elapsedTime);
+//
+//		grid.resetSolution();
+//
+//		startTime = System.nanoTime();
+//		grid.solve(3);
+//		stopTime = System.nanoTime();
+//		elapsedTime = stopTime - startTime;
+//		System.out.println("Dijkstra = " + elapsedTime);
+
 		JPanel mazeBorder = new JPanel();
 		final int BORDER_SIZE = 20;
 		mazeBorder.setBounds(0, 0, WIDTH + BORDER_SIZE, HEIGHT + BORDER_SIZE);
@@ -88,16 +127,16 @@ public class Maze {
 		JButton resetButton = new JButton("Reset");
 		JButton solveAgainButton = new JButton("Solve Again");
 		
-        JComboBox<String> genMethodsComboBox = new JComboBox<>(GENERATION_METHODS);
+//        JComboBox<String> genMethodsComboBox = new JComboBox<>(GENERATION_METHODS);
         JComboBox<String> solveMethodsComboBox = new JComboBox<>(SOLVING_METHODS);
         
         // may need to comment these out if running on small resolution!!!
-        genMethodsComboBox.setMaximumRowCount(genMethodsComboBox.getModel().getSize()); 
+//        genMethodsComboBox.setMaximumRowCount(genMethodsComboBox.getModel().getSize());
         solveMethodsComboBox.setMaximumRowCount(solveMethodsComboBox.getModel().getSize());
  
-        JSlider initialSpeedSlider = new JSlider(JSlider.HORIZONTAL, 1, 40, 1);
-        JSlider genSpeedSlider = new JSlider(JSlider.HORIZONTAL, 1, 40, 1);
-        JSlider solveSpeedSlider = new JSlider(JSlider.HORIZONTAL, 1, 40, 1);
+        JSlider initialSpeedSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 100);
+        JSlider genSpeedSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 100);
+        JSlider solveSpeedSlider = new JSlider(JSlider.HORIZONTAL, 1, 100, 100);
         
         Hashtable<Integer, JLabel> labels = new Hashtable<Integer, JLabel>();
         labels.put(1, new JLabel("Fast"));
@@ -117,9 +156,9 @@ public class Maze {
         
 		// Create the card panels.
 		
-		JPanel card1 = new JPanel();
+//		JPanel card1 = new JPanel();
 		JPanel card2 = new JPanel();
-		card1.setLayout(new GridBagLayout());
+//		card1.setLayout(new GridBagLayout());
 		card2.setLayout(new GridBagLayout());
 		
 	    GridBagConstraints c = new GridBagConstraints();;
@@ -129,7 +168,7 @@ public class Maze {
 	    c.weightx = 0.7;
 	    c.gridx = 0;
 		c.gridy = 0;
-		card1.add(genMethodsComboBox, c);
+//		card1.add(genMethodsComboBox, c);
 		card2.add(solveMethodsComboBox, c);
 		
 		
@@ -137,13 +176,13 @@ public class Maze {
 		c.weightx = 0.3;
 		c.gridx = 1;
 		c.gridy = 0;
-		card1.add(runButton, c);
+//		card1.add(runButton, c);
 		card2.add(solveButton, c);
 		
 		c.gridheight = 1;
 		c.gridx = 0;
 		c.gridy = 1;
-		card1.add(initialSpeedSlider, c);	
+//		card1.add(initialSpeedSlider, c);
 		card2.add(genSpeedSlider, c);
 
 		JPanel card3 = new JPanel();
@@ -162,15 +201,15 @@ public class Maze {
 		JPanel cards = new JPanel(cardLayout);
 		cards.setBorder(new EmptyBorder(0, 20, 0, 0));
 		cards.setOpaque(false);
-		cards.add(card1, "gen");
+//		cards.add(card1, "gen");
 		cards.add(card2, "solve");
 		cards.add(card3, "reset");
 		
 		container.add(cards);
 		
-		genSpeedSlider.addChangeListener(event -> {
-			speed = genSpeedSlider.getValue();
-		});
+//		genSpeedSlider.addChangeListener(event -> {
+//			speed = genSpeedSlider.getValue();
+//		});
 		
 		solveSpeedSlider.addChangeListener(event -> {
 			speed = solveSpeedSlider.getValue();
@@ -180,14 +219,18 @@ public class Maze {
 			 speed = initialSpeedSlider.getValue();
 			 generated = false;
 			 solved = false;
-			 grid.generate(genMethodsComboBox.getSelectedIndex());
+			 grid.generate(9);
 			 genSpeedSlider.setValue(speed);
 		     cardLayout.next(cards);
 		});
 
 		solveButton.addActionListener(event -> {
 			if (generated) {
-				grid.solve(solveMethodsComboBox.getSelectedIndex());	
+				long startTime = System.nanoTime();
+				grid.solve(solveMethodsComboBox.getSelectedIndex());
+				long stopTime = System.nanoTime();
+				long elapsedTime = stopTime - startTime;
+				System.out.println("" + solveMethodsComboBox.getSelectedIndex() + elapsedTime);
 				cardLayout.last(cards);
 				solveSpeedSlider.setValue(speed);
 			} else {

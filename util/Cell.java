@@ -10,28 +10,27 @@ import main.Maze;
 
 public class Cell {
 
-	private int x, y, distance, id;
-	
+	private int x, y, id, distance;
+	private double gCost, hCost;
 	private Cell parent;
-	
+	public Cell previous;
+	public Cell next;
+	public int bucketIndex;
 	private boolean visited = false;
 	private boolean path = false;
 	private boolean deadEnd = false;
-	
 	private boolean[] walls = {true, true, true, true};
-	
 	public boolean[] getWalls() {
 		return walls;
 	}
-
 	public void setWalls(boolean[] walls) {
 		this.walls = walls;
 	}
 
+
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.distance = -1;
 	}
 	
 	public int getX() {
@@ -53,7 +52,15 @@ public class Cell {
 	public boolean isVisited() {
 		return visited;
 	}
-	
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
@@ -74,20 +81,32 @@ public class Cell {
 		this.path = path;
 	}
 	
-	public int getDistance() {
-		return distance;
+	public double getgCost() {
+		return this.gCost;
 	}
 
-	public void setDistance(int distance) {
-		this.distance = distance;
+	public double gethCost() {
+		return this.hCost;
+	}
+
+	public double getfCost() {
+		return this.gCost + this.hCost;
 	}
 
 	public Cell getParent() {
-		return parent;
+		return this.parent;
 	}
-	
+
 	public void setParent(Cell parent) {
 		this.parent = parent;
+	}
+
+	public void setgCost(double cost) {
+		this.gCost = cost;
+	}
+
+	public void sethCost(double cost) {
+		this.hCost = cost;
 	}
 	
 	public void draw(Graphics g) {
