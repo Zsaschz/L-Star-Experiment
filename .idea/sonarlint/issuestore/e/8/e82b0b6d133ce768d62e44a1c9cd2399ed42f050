@@ -1,0 +1,47 @@
+
+A
+java:S1659"$Declare "solved" on a separate line.(Å¹˜Š8Í“¿ñ½/
+?
+java:S1659'""Declare "rows" on a separate line.(èÃá¯8Ú“¿ñ½/
+s
+java:S1149f"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(Àş¿Ê8ê“¿ñ½/
+f
+java:S3252E"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´8”¿ñ½/
+b
+java:S3252b"EUse static access with "javax.swing.SwingConstants" for "HORIZONTAL".(Øì¶ê8ª”¿ñ½/
+g
+java:S3252c"EUse static access with "javax.swing.SwingConstants" for "HORIZONTAL".(Éêø§ıÿÿÿÿ8º”¿ñ½/
+g
+java:S3252d"EUse static access with "javax.swing.SwingConstants" for "HORIZONTAL".(Â±Ìşÿÿÿÿ8¼”¿ñ½/
+v
+java:S2293f"YReplace the type specification in this constructor call with the diamond operator ("<>").(Àş¿Ê8¿”¿ñ½/
+9
+java:S1116}"Remove this empty statement.(¸ëşø8Ì”¿ñ½/
+O
+java:S1602«",Remove useless curly braces around statement(ú’õ™üÿÿÿÿ8Û”¿ñ½/
+T
+java:S2696¬"6Make the enclosing method "static" or remove this set.(ê¶´8Ş”¿ñ½/
+J
+java:S1602¯",Remove useless curly braces around statement(ÄÉùÜ8á”¿ñ½/
+T
+java:S2696°"6Make the enclosing method "static" or remove this set.(İÎŸ«8á”¿ñ½/
+S
+java:S2696´"6Make the enclosing method "static" or remove this set.(«“8ã”¿ñ½/
+T
+java:S2696µ"6Make the enclosing method "static" or remove this set.(•ƒôÁ8ä”¿ñ½/
+Y
+java:S2696¶"6Make the enclosing method "static" or remove this set.(ºßøŞúÿÿÿÿ8å”¿ñ½/
+J
+java:S16041"(Make this anonymous inner class a lambda(¤©Òâüÿÿÿÿ8ò”¿ñ½/
+m
+java:S1104"QMake speed a static final constant or non-public and provide accessors if needed.(¾ÔŠ8õ”¿ñ½/
+r
+java:S1104"UMake generated a static final constant or non-public and provide accessors if needed.(Å¹˜Š8õ”¿ñ½/
+o
+java:S1104"RMake solved a static final constant or non-public and provide accessors if needed.(Å¹˜Š8ö”¿ñ½/
+G
+java:S1444"+Make this "public static speed" field final(¾ÔŠ8÷”¿ñ½/
+L
+java:S1444"/Make this "public static generated" field final(Å¹˜Š8÷”¿ñ½/
+I
+java:S1444",Make this "public static solved" field final(Å¹˜Š8ø”¿ñ½/
